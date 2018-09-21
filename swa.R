@@ -14,8 +14,8 @@ sqv1 <- c(" ", string2vec(seq1))
 sqv2 <- c(" ", string2vec(seq2))
 
 gap_penalty <- -2
-ltr_match <- 2
-ltr_mismt <- -1
+ltr_match <- 3
+ltr_mismt <- -3
 
 colnames(smx) <- sqv2
 row.names(smx) <- sqv1
@@ -32,3 +32,42 @@ for (ri in 2:n_r) {
   }
 }
 
+# traceback
+
+max_val <- max(smx)
+coords <- which(smx == max_val, arr.ind = TRUE)
+
+ri <- coords[1, 1]
+ci <- coords[1, 2]
+s <- ""
+
+
+while(smx[ri, ci] > 1) {
+  s <- paste0(s, sqv2[ci])
+  
+  # next cell coordinates where max
+  if (smx[ri - 1, ci - 1] > smx[ri - 1, ci] && smx[ri - 1, ci - 1] > smx[ri, ci - 1]) {
+    ri <- ri - 1
+    ci <- ci - 1
+  }
+  
+  if (smx[ri - 1, ci - 1] == 0) {
+    s <- paste0(s, sqv2[ci])
+    break
+  }
+  
+  if (smx[ri, ci - 1] > smx[ri - 1, ci - 1] && smx[ri, ci - 1] > smx[ri - 1, ci]) {
+    ci <- ci - 1
+    s <- paste0(s, "-")
+  }
+  
+}
+
+
+s <- string2vec(s)
+s <- paste(rev(s), collapse = "")
+
+# build emppty prefix string and prepend
+s <- paste0(paste(rep(" ", ci - 2), collapse = ""), s)
+
+s
