@@ -5,6 +5,11 @@ date: "9/21/2018"
 output: html_document
 ---
 
+```{r demo}
+2 + 2
+```
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
