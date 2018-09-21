@@ -75,4 +75,20 @@ s <- paste0(paste(rep(" ", ci - 2), collapse = ""), s)
 return(s)
 }
 
-swa()
+# Checkear que la funcion devuelve resultados esperados
+# en este caso resultados checkeados independiemente
+seq1 = "tgttaca"
+seq2 = "ggttgacta"
+
+cat(paste(seq2, "\n"))
+cat(swa(seq1, seq2))
+
+test1 <- swa(seq1, seq2) == " gtt-ac-a"
+
+seq1 = "acctaagg"
+seq2 = "ggctcaatca"
+test2 <- swa(seq1, seq2) == "  ct-aa"
+
+all(test1, test2) == TRUE
+
+
