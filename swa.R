@@ -1,5 +1,7 @@
-seq1 <- "acctaagg"
-seq2 <- "ggctcaatca"
+swa <- function(seq1 = "acctaagg",
+                seq2 = "ggctcaatca")
+{
+
 
 string2vec <- function(s) {
   result <- strsplit(s, split = "")[[1]]
@@ -70,4 +72,7 @@ s <- paste(rev(s), collapse = "")
 # build emppty prefix string and prepend
 s <- paste0(paste(rep(" ", ci - 2), collapse = ""), s)
 
-s
+return(s)
+}
+
+swa()
