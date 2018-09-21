@@ -92,6 +92,6 @@ test2 <- swa(seq1, seq2) == "  ct-aa"
 all(test1, test2) == TRUE
 
 
-# Solved this!
+# Solved this! Yes
 
 
